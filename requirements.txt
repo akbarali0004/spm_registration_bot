@@ -1,0 +1,5 @@
+aiogram==3.3.0
+aiofiles==23.2.1
+python-dotenv
+sqlalchemy
+python-docx==1.0.0

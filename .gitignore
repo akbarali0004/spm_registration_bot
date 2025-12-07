@@ -1,0 +1,12 @@
+# Maxfiy fayl
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database fayl (agar local)
+bot.db
+
+# VS Code sozlamalari
+.vscode/
