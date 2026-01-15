@@ -78,3 +78,17 @@ markup = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Да ✅", callback_data="currently_yes")],
         [InlineKeyboardButton(text="Нет ❌", callback_data="currently_no")]
     ])
+
+
+# Oqish turi: online, offline, zaochniy
+study_format_btn = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="🏢 Очный", callback_data="study_format_fulltime")
+    ],
+    [
+        InlineKeyboardButton(text="🏠 Заочный", callback_data="study_format_parttime")
+    ],
+    [
+        InlineKeyboardButton(text="💻 Онлайн", callback_data="study_format_online")
+    ]
+])

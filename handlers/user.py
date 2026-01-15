@@ -91,13 +91,29 @@ async def edu_start(message: Message, state: FSMContext):
 async def edu_end(message: Message, state: FSMContext):
     if re.match(date_regex, message.text):
         await state.update_data(edu_end=message.text)
-        await message.answer("<b>5. Опыт работы 💼</b>\n\nИмеется ли у вас опыт работы?", reply_markup=ask_experience_btn)
-        await state.set_state(Form.has_experience)
+        await message.answer("<b>4.4. Формат обучения:</b>\n\n⬇️ Выберите подходящий вариант ⬇️", reply_markup=study_format_btn)
+        await state.set_state(Form.study_format)
     else:
         await message.answer(
-            "❌ Неверный формат даты!\n\n"
+            "❌ Неверный формат даты!\n"
             "Пожалуйста, введите дату в формате <b>ДД.ММ.ГГГГ</b> .\n\n(Например: 31.12.2020)"
         )
+
+
+# 4.4
+@router.callback_query(Form.study_format)
+async def study_format(call: CallbackQuery, state: FSMContext):
+    study_format=''
+    if call.data == "study_format_fulltime":
+        study_format = "Очный"
+    if call.data == "study_format_parttime":
+        study_format = "Заочный"
+    if call.data == "study_format_online":
+        study_format = "Онлайн"
+
+    await state.update_data(study_format = study_format)
+    await call.message.answer("<b>5. Опыт работы 💼</b>\n\nИмеется ли у вас опыт работы?", reply_markup=ask_experience_btn)
+    await state.set_state(Form.has_experience)
 
 
 # 5 — bor/yo'q
@@ -261,6 +277,7 @@ async def send_result(message, state, bot):
         f"🎓 Ta’lim: {data['education']}\n"
         f"   📅 Boshlangan: {data['edu_start']}\n"
         f"   📆 Tugagan: {data['edu_end']}\n"
+        f"   🏢 Ta'lim shakli: {data['study_format']}\n"
         f"💼 Ish tajribasi: {data['has_experience']}\n"
         f"   Lavozim: {data['position']}\n"
         f"   🏢 Tashkilot: {data['company']}\n"

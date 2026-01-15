@@ -7,10 +7,10 @@ from aiogram.enums import ParseMode
 
 from config import BOT_TOKEN, ADMIN
 from handlers import router
-from database import Base, engine
-from models import Vacancy, VacancyQuestion, UserAnswer
+# from database import Base, engine
+# from models import Vacancy, VacancyQuestion, UserAnswer
 
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 
 
 dp = Dispatcher()
