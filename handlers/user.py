@@ -103,6 +103,7 @@ async def edu_end(message: Message, state: FSMContext):
 # 4.4
 @router.callback_query(Form.study_format)
 async def study_format(call: CallbackQuery, state: FSMContext):
+    await call.message.edit_reply_markup(reply_markup=None)
     study_format=''
     if call.data == "study_format_fulltime":
         study_format = "Очный"
@@ -279,7 +280,7 @@ async def send_result(message, state, bot):
         f"   📆 Tugagan: {data['edu_end']}\n"
         f"   🏢 Ta'lim shakli: {data['study_format']}\n"
         f"💼 Ish tajribasi: {data['has_experience']}\n"
-        f"   Lavozim: {data['position']}\n"
+        f"   🏷️ Lavozim: {data['position']}\n"
         f"   🏢 Tashkilot: {data['company']}\n"
         f"   ⏳ Muddat: {data.get('work_period', '-')}\n"
         f"   🟢 Hozirda ishlayaptimi: {data.get('currently_working', '-')}\n"

@@ -15,6 +15,7 @@ class Form(StatesGroup):
     education = State()
     edu_start = State()
     edu_end = State()
+    study_format = State()
     has_experience = State()
     position = State()
     company = State()
